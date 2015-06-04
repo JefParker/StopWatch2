@@ -1,31 +1,42 @@
 // JavaScript Document
 
 function OnLoadWebsite() {
-	document.getElementById("Header").innerHTML = MakeLogo("Stop", "Watch", true, true);
-	document.getElementById("Header").addEventListener("click", MakeHomePage);
+  var sHeader = "";
+  sHeader += "<div class='Title' id='Title'>"+MakeLogo("Stop", "Watch", false, false)+"</div>";
+  sHeader += "<div class='MenuButton' id='MenuButton'><a href='javascript:ShowMenuPanel()' title='Menu'>-<br>-<br>-</a></div>";
+  sHeader += "<div class='MenuPanel' id='MenuPanel'>"+MakeMenuPanel()+"</div>";
+	document.getElementById("Header").innerHTML = sHeader;
+	document.getElementById("Main").innerHTML = "<div class='RoundedBox'>" + MakeLogo("Stop", "Watch", true, true) + "</div>";
+	document.getElementById("Title").addEventListener("click", MakeHomePage);
+	ShowMenuPanel();
 }
 
 function MakeHomePage() {
-  var sPage = '';
+  document.getElementById("Title").innerHTML = MakeLogo("Stop", "Watch", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
 	sPage += "<div id='HomeLogo' class='Copy' style='font-size: 75%; text-align: center;'>"+MakeLogo("Stop", "Watch", true, true)+"</div>";
   sPage += "<div id='Copyright' class='Copy' style='font-size: 75%; text-align: center;'>&copy; " + YearInRomanNumerals() + " The Inchoate Company</div>";
+  sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
 	document.getElementById("Copyright").addEventListener("click", MakeAboutUsPage);
+	document.getElementById("HomeLogo").addEventListener("click", MakeStopWatchPage);
 }
 
 function MakeAboutUsPage() {
-  var sPage = '';
-	sPage += "<div id='InchoateLogo' style='text-align: left; margin-top: 0px; margin-top: 3px; font-size: 75%;'></div>";
-	sPage += "<div class='Copy' style='font-size: 80%; text-align: center; margin-top: 50px;'>";
-	sPage += "<p><a href='https://chrome.google.com/webstore/detail/stopwatch/lifnoadagfppcljadelgkjddidcnjbcc' target='_blank'>StopWatch</a>, Version 0.0.1.0</p>";
-  sPage += "</p>";
+  document.getElementById("Title").innerHTML = MakeLogo("About", "Us", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
+	sPage += "<div id='InchoateLogo' style='text-align: left; margin-top: 0px; margin-top: 3px; font-size: 75%;'>"+MakeLogo("Stop", "Watch", true, false)+"</div>";
+	sPage += "<p class='CopyCentered'><a href='https://chrome.google.com/webstore/detail/stopwatch/lifnoadagfppcljadelgkjddidcnjbcc' target='_blank'>StopWatch</a>, Version 0.0.1.0</p>";
 	sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
 }
 
 function MakeStopWatchPage() {
-  var sPage = '';
-  sPage += "<div id='SWLogo' style='text-align: left; margin-top: 0px; margin-top: 3px; font-size: 75%;'>"+MakeLogo("Stop", "Watch", false, false)+"</div>";
+  document.getElementById("Title").innerHTML = MakeLogo("Stop", "Watch", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
   sPage += "<div id='SWReadout' class='TitleText' style='font-size: 35px; border: 1px; box-shadow: 5px 5px 5px #9A9A9A; border-radius: 5px; background-color: Maroon;'>";
   sPage += "00:00:00.0";
   sPage += "</div>"; // SWReadout
@@ -34,6 +45,7 @@ function MakeStopWatchPage() {
   sPage += "<button id='SWReset' value='Reset' style='disabled: true;' data-inline='true' data-mini='true'>Lap</button>";
   sPage += "<button id='SWStart' value='Start' data-inline='true' data-mini='true'>Start</button>";
   sPage += "<textarea id='LapList' class='Copy' style='border: 0; font-size: 11px; height: 150px; background-color: #f1f1f1;' readonly></textarea>";
+  sPage += "</div>";
   sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
 	document.getElementById("SWReset").addEventListener("click", ResetClicked);
@@ -46,7 +58,9 @@ function MakeStopWatchPage() {
 }
 
 function MakeTipCalcPage() {
-  var sPage = '';
+  document.getElementById("Title").innerHTML = MakeLogo("Tip", "Calc", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
   sPage += "<input type='text' id='TipBill' style='text-align: center;' placeholder='Bill' OnBlur='UpdateTip()' OnChange='UpdateTip()' OnInput='UpdateTip()' OnKeyUp='UpdateTip()' OnPaste='UpdateTip()'>";
   sPage += "<input type='range' id='TipPercentage' value='20' min='0' max='100' list='TipPercentageNum' OnChange='UpdateTip()'><p id='TipPercentageLable'>20%</p>";
   sPage += "<datalist id='TipPercentageNum'>";
@@ -77,13 +91,16 @@ function MakeTipCalcPage() {
   sPage += "</label>";
   sPage += "<p id='TipTip' style='text-align: center; color: red;'>Tip</p>";
   sPage += "<p id='TipTotal' style='text-align: center; color: red;'>Total</p>";
+  sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
 	document.getElementById('TipRound').checked = true;
 	document.getElementById("TipRound").addEventListener("change", UpdateTip);
 }
 
 function MakeFVCalcPage() {
-  var sPage = '';
+  document.getElementById("Title").innerHTML = MakeLogo("Future", "Value", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
   sPage += "<select id='FVCalcType' data-mini='true' OnChange='ChangeFVCalc()'>";
   sPage += "<option value='Find Present Value'>Find Present Value</option>";
   sPage += "<option value='Find Number of Periods'>Find Number of Periods</option>";
@@ -94,12 +111,15 @@ function MakeFVCalcPage() {
   sPage += "<input type='text' id='FVNumOfPeriods' value='1' style='font-size: 80%; text-align: center;' placeholder='# of Periods' OnBlur='UpdateFV()' OnChange='UpdateFV()' OnInput='UpdateFV()' OnKeyUp='UpdateFV()' OnPaste='UpdateFV()'>";
   sPage += "<input type='range' id='FVRate' value='15' min='0.00' max='100.00' OnChange='UpdateFV()'><p id='FVRateLable' for='FVRate'>15%</p>";
   sPage += "<input type='text' id='FVFutureValue' readonly value='Future Value is 115.00' style='font-size: 80%; text-align: center; background-color: #f1f1f1;' placeholder='# of Periods' OnBlur='UpdateFV()' OnChange='UpdateFV()' OnInput='UpdateFV()' OnKeyUp='UpdateFV()' OnPaste='UpdateFV()'>";
+  sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
   UpdateFV();
 }
 
 function MakeCPICalcPage() {
-  var sPage = '';
+  document.getElementById("Title").innerHTML = MakeLogo("CPI", "Calc", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
 	sPage += "<div id='CPILogo' style='text-align: left; margin-top: 0px; margin-top: 3px; font-size: 75%;'></div>";
   sPage += "<p align='center'><input type='text' class='Copy' id='CPIStartingAmount' value='$100.00' maxlength='14' style='text-align: center;' data-inline='true' placeholder='Starting Amount' OnBlur='UpdateBP()' OnChange='UpdateBP()' OnInput='UpdateBP()' OnKeyUp='UpdateBP()' OnPaste='UpdateBP()'></p>";
   sPage += "<p class='Copy' style='text-align: center; margin-top: 0; font-size: 80%;'>in</p>";
@@ -112,11 +132,14 @@ function MakeCPICalcPage() {
   sPage += "</select>";
   sPage += "<p class='Copy' style='text-align: center; font-size: 80%;'>as</p>";
   sPage += "<p id='CPIResultAmount' class='Copy' style='text-align: center; margin-top: 0;'><b>$100.00</b></p>";
+  sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
 }
 
 function MakeMagicNumberPage() {
-  var sPage = '';
+  document.getElementById("Title").innerHTML = MakeLogo("Magic", "#", false, false);
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'>";
   sPage += "<div id='MagicNumberLogo' style='text-align: left; margin-top: 0px; margin-top: 3px; font-size: 75%;'></div>";
   sPage += "<select id='MNSport' data-mini='true' OnChange='CalculateMagicNumber()'>";
   sPage += "<option value='162'>MLB (regular)</option>";
@@ -128,9 +151,28 @@ function MakeMagicNumberPage() {
   sPage += "<p>1st place team's wins: <input type='num' id='DivWinNum' placeholder='0' style='width: 25px; text-align: center;' OnBlur='CalculateMagicNumber()' OnChange='CalculateMagicNumber()' OnInput='CalculateMagicNumber()' OnKeyUp='CalculateMagicNumber()' OnPaste='CalculateMagicNumber()' /></p>";
   sPage += "<p>The elimination number (tragic number) for the 2nd place team is the <a href='http://www.wikiwand.com/en/Magic_number_(sports)' target='_blank'>magic number</a> for the 1st place team.  That number is...</p>";
   sPage += "<p id='MagicNum' style='font-size: 250%; color: blue;'>?</p>";
+  sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
   document.getElementById("LostNum").addEventListener('change', CalculateMagicNumber, false);
   document.getElementById("DivWinNum").addEventListener('change', CalculateMagicNumber, false);
+}
+
+function MakeMenuPanel() {
+  var sMenu = "<a href='javascript:MakeStopWatchPage()' title='StopWatch'>StopWatch</a><br>";
+  sMenu += "<a href='javascript:MakeTipCalcPage()' title='Tip Calculator'>Tip</a><br>";
+  sMenu += "<a href='javascript:MakeFVCalcPage()' title='Rate or Future Value'>Future</a><br>";
+  sMenu += "<a href='javascript:MakeCPICalcPage()' title='CPI Calculator'>CPI</a><br>";
+  sMenu += "<a href='javascript:MakeMagicNumberPage()' title='Magic Number'>Magic #</a><br>";
+  sMenu += "<a href='javascript:MakeHomePage()' title='Home'>Home</a><br>";
+  sMenu += "<a href='javascript:MakeAboutUsPage()' title='Menu'>About Us</a>";
+  return sMenu;
+}
+
+function ShowMenuPanel() {
+	if ('none' === document.getElementById('MenuPanel').style.display)
+		document.getElementById('MenuPanel').style.display = 'block';
+	else
+		document.getElementById('MenuPanel').style.display = 'none';
 }
 
 function CloseMenu() {
@@ -159,7 +201,7 @@ function MakeLogo(sFirst, sLast, bCentered, bImage) {
   var nColor = getRandomInt (0, aColors.length-1);
   var sLogo = "";
   if (bImage)
-    sLogo += "<p align='center'><img src='/assets/StopWatch128.png'></p>";
+    sLogo += "<p align='center'><img src='assets/StopWatch128.png'></p>";
   if (bCentered)
     sLogo += "<div class='CopyHeadline' style='color: gray; line-height: 100%;";
   else
