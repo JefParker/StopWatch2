@@ -1,73 +1,83 @@
-
-html, body {
- height: 100%;
-}
-
+html,
 body {
- background-color: #f1f1f1;
- margin-top: 1px;
- margin-left: auto;
- margin-right: auto;
+    height: 100%;
 }
-
+body {
+    background-color: #f1f1f1;
+    margin-top: 1px;
+    margin-left: auto;
+    margin-right: auto;
+}
 .Header {
-  position: relative;
-  margin-top: 1px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-  height: 32px;
-  background-color: #f1f1f1;
-  z-index: 1;
+    position: relative;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 4px;
+    width: 94%;
+    height: 32px;
+    border: 1px solid;
+    border-color: silver gray gray silver;
+    border-radius: 5px;
+    background-color: #003399;
+    z-index: 1;
 }
-
 .Title {
-  position: relative;
-  padding: 4px;
-  width: 70%;
-  display: inline-block;
-}
-
-.Main {
-  background-color: #f1f1f1;
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
-.MenuButton {
+    position: absolute;
+    top: 3px;
+    padding: 1px 1px 1px 1px;
+    margin-top: 1px;
+    width: 70%;
     display: inline-block;
-    color: #555555;
-		padding: 1px 1px 1px 1px;
+}
+.TitleAni {
+    -webkit-animation: SlideInFromRight 0.3s ease-in-out 0.4s backwards;
+    -moz-animation: SlideInFromRight 0.3s ease-in-out 0.4s backwards;
+    animation: SlideInFromRight 0.3s ease-in-out 0.4s backwards;
+}
+.Main {
+    background-color: #f1f1f1;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+}
+.MenuButton {
+    position: absolute;
+    display: inline-block;
+    color: WhiteSmoke;
+    padding: 1px 1px 1px 1px;
     line-height: 20%;
-    font-size: 200%;
-		z-index: 3;
-		text-align: right;
-		width: 20%;
-		right: 1px;
+    font-size: 300%;
+    z-index: 3;
+    text-align: right;
+    width: 20%;
+    right: 5px;
+    top: 5px;
 }
 .MenuButton:hover {
-    color: #555555;
+    color: WhiteSmoke;
 }
 .MenuButton a:link {
     text-decoration: none;
-    color: #555555;
+    color: WhiteSmoke;
 }
 .MenuButton a:visited {
-    color: #555555;
+    color: WhiteSmoke;
     text-decoration: none;
 }
 .MenuButton a:active {
-    color: #555555;
+    color: WhiteSmoke;
 }
 .MenuPanel {
     font-family: 'Roboto', sans-serif;
     position: absolute;
-    margin: -10px 1px 1px 106px;
+    margin: 35px 1px 1px 1px;
+    right: 0;
     font-size: 120%;
     line-height: 175%;
-    color: white;
-    background-color: #5c6e80;
+    color: WhiteSmoke;
+    background-color: #003399;
     min-height: 50px;
     min-width: 50px;
     border: 1px solid;
@@ -77,95 +87,108 @@ body {
     box-shadow: 3px 3px 3px silver;
     display: none;
     z-index: 300;
-    -webkit-animation: MenuSlideInLeft 0.5s ease-in-out 0.1s backwards;
-    -moz-animation: MenuSlideInLeft 0.5s ease-in-out 0.1s backwards;
-    animation: MenuSlideInLeft 0.5s ease-in-out 0.1s backwards;
+    -webkit-animation: MenuSlideInLeft 0.3s ease-in-out 0.01s backwards;
+    -moz-animation: MenuSlideInLeft 0.3s ease-in-out 0.01s backwards;
+    animation: MenuSlideInLeft 0.3s ease-in-out 0.01s backwards;
 }
 .MenuPanel a:link {
     text-decoration: none;
-    color: white;
+    color: whitesmoke;
 }
 .MenuPanel a:visited {
     color: white;
     text-decoration: none;
 }
 .MenuPanel a:hover {
-    color: whitesmoke;
+    color: white;
     transition: 0.2s;
 }
 .MenuPanel a:active {
     color: whitesmoke;
 }
-
-.Copy, .CopyCentered {
-font-family: 'Roboto', Helvetica, Arial, sans-serif;
-color: #555555;
-font-size: 100%;
-line-height: 130%;
-font-weight: 400;
-}
-
+.Copy,
 .CopyCentered {
-  text-align: center;
-}
-
-.Controls {
-    font-family: 'Arimo', sans-serif;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    color: #555555;
     font-size: 100%;
+    line-height: 130%;
+    font-weight: 400;
+}
+.CopyCentered {
+    text-align: center;
+}
+.MagicNumber {
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-size: 200%;
+    color: blue;
+    text-align: center;
+    -webkit-animation: HeadlineDownDrop 0.7s ease-in-out 0.01s backwards;
+    -moz-animation: HeadlineDownDrop 0.7s ease-in-out 0.01s backwards;
+    animation: HeadlineDownDrop 0.7s ease-in-out 0.01s backwards;
+}
+.Controls {
+    font-family: 'Roboto', sans-serif;
+    font-size: 130%;
     border-radius: 5px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-.TitleText {
-font-family: Roboto, 'Times New Roman', Times, TimesNewRoman, Georgia, serif;
-color: white;
-text-shadow: 2px 2px 4px #000000;
-font-size: 225%;
-line-height: 160%;
-letter-spacing: .03em;
-word-spacing: .15em;
-text-align: center;
-margin: 0 0 0 0;
+.ControlsCentered {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
-
+.TitleText, .Readout {
+    font-family: 'Times New Roman', Times, TimesNewRoman, Georgia, serif;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 225%;
+    line-height: 160%;
+    letter-spacing: .03em;
+    word-spacing: .15em;
+    text-align: center;
+    margin: 0 0 0 0;
+}
+.Readout {
+  font-size: 35px; border: 1px; box-shadow: 5px 5px 5px #9A9A9A; border-radius: 5px; background-color: Maroon;
+}
 .CopyHeadline {
-font-family: 'Roboto', Helvetica, Arial, sans-serif;
-font-weight: bold;
-color: #555555;
-font-size: 150%;
-line-height: 120%;
-letter-spacing: .09em;
-word-spacing: .15em;
-text-align: center;
-font-weight: 400;
-margin: 0 0 0 0;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #555555;
+    font-size: 150%;
+    line-height: 120%;
+    letter-spacing: .09em;
+    word-spacing: .15em;
+    text-align: center;
+    font-weight: 400;
+    margin: 0 0 0 0;
 }
-
 .CopyHeadline300 {
-font-family: 'Roboto', Helvetica, Arial, sans-serif;
-font-weight: bold;
-color: #555555;
-font-size: 140%;
-line-height: 120%;
-letter-spacing: .1em;
-word-spacing: .15em;
-text-align: center;
-font-weight: 300;
-margin: 0 0 0 0;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: WhiteSmoke;
+    font-size: 140%;
+    line-height: 120%;
+    letter-spacing: .1em;
+    word-spacing: .15em;
+    text-align: center;
+    font-weight: 300;
+    margin: 0 0 0 0;
 }
-
 .CopyHeadline900 {
-font-family: 'Roboto', Helvetica, Arial, sans-serif;
-font-weight: bold;
-color: #555555;
-font-size: 140%;
-line-height: 120%;
-letter-spacing: .1em;
-word-spacing: .15em;
-text-align: center;
-font-weight: 900;
-margin: 0 0 0 0;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    color: #555555;
+    font-size: 140%;
+    line-height: 120%;
+    letter-spacing: .1em;
+    word-spacing: .15em;
+    text-align: center;
+    font-weight: 900;
+    margin: 0 0 0 0;
 }
-
 .RoundedBox {
     background-color: #f1f1f1;
     width: 95%;
@@ -198,63 +221,60 @@ margin: 0 0 0 0;
         transform-origin: top left;
     }
 }
-
 .BasicButton {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-	background-color:#ededed;
-	-webkit-border-top-left-radius:6px;
-	-moz-border-radius-topleft:6px;
-	border-top-left-radius:6px;
-	-webkit-border-top-right-radius:6px;
-	-moz-border-radius-topright:6px;
-	border-top-right-radius:6px;
-	-webkit-border-bottom-right-radius:6px;
-	-moz-border-radius-bottomright:6px;
-	border-bottom-right-radius:6px;
-	-webkit-border-bottom-left-radius:6px;
-	-moz-border-radius-bottomleft:6px;
-	border-bottom-left-radius:6px;
-	text-indent:0;
-	border:1px solid #dcdcdc;
-	display:inline-block;
-	color:#777777;
-	font-family: 'Lato', Helvetica, Arial, sans-serif;
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:50px;
-	line-height:50px;
-	width:130px;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #ffffff;
+    -moz-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #ffffff;
+    box-shadow: inset 0px 1px 0px 0px #ffffff;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+    background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+    background-color: #ededed;
+    -webkit-border-top-left-radius: 6px;
+    -moz-border-radius-topleft: 6px;
+    border-top-left-radius: 6px;
+    -webkit-border-top-right-radius: 6px;
+    -moz-border-radius-topright: 6px;
+    border-top-right-radius: 6px;
+    -webkit-border-bottom-right-radius: 6px;
+    -moz-border-radius-bottomright: 6px;
+    border-bottom-right-radius: 6px;
+    -webkit-border-bottom-left-radius: 6px;
+    -moz-border-radius-bottomleft: 6px;
+    border-bottom-left-radius: 6px;
+    text-indent: 0;
+    border: 1px solid #dcdcdc;
+    display: inline-block;
+    color: #777777;
+    font-family: 'Lato', Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    font-style: normal;
+    height: 50px;
+    line-height: 50px;
+    width: 130px;
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 1px 1px 0px #ffffff;
 }
 .BasicButton:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
-	background:-moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
-	background-color:#dfdfdf;
+    background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+    background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+    background-color: #dfdfdf;
 }
 .BasicButton:active {
-	position:relative;
-	top:1px;
+    position: relative;
+    top: 1px;
 }
-
 .top-titlebar {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 32px;
-  background-color: #7a7c7c;
-  -webkit-app-region: drag;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 32px;
+    background-color: #7a7c7c;
+    -webkit-app-region: drag;
 }
-
 @-webkit-keyframes MenuSlideInLeft {
     from {
         opacity: 0.0;
@@ -272,14 +292,15 @@ margin: 0 0 0 0;
     }
 }
 @-webkit-keyframes MenuSlideUp {
-    0%  {
+    0% {
         opacity: 0.0;
         filter: alpha(opacity=0);
         -webkit-transform: translateY(8rem);
         -moz-transform: translateY(8rem);
         transform: translateY(8em);
+        HeadlineDropDown
     }
-    100%  {
+    100% {
         opacity: 1.0;
         filter: alpha(opacity=100);
         -webkit-transform-origin: top left;
@@ -287,15 +308,23 @@ margin: 0 0 0 0;
         transform-origin: top left;
     }
 }
-@-webkit-keyframes HeadlineDropDown {
-    0%  {
+@-webkit-keyframes HeadlineDownDrop {
+    0% {
         opacity: 0.0;
         filter: alpha(opacity=0);
         -webkit-transform: translateY(-3rem);
         -moz-transform: translateY(-3rem);
-        transform: translateY(-3em);
+        -webkit-transform: rotateY(-90deg);
+        transform: rotateY(-90deg) translateY(-3em);
+        background-color: green;
     }
-    100%  {
+    50% {
+        -webkit-transform: translateY(-1rem);
+        -moz-transform: translateY(-1rem);
+        -webkit-transform: rotateY(-80deg);
+        transform: rotateY(-80deg) translateY(-1em);
+    }
+    100% {
         opacity: 1.0;
         filter: alpha(opacity=100);
         -webkit-transform-origin: top left;
@@ -304,14 +333,14 @@ margin: 0 0 0 0;
     }
 }
 @-webkit-keyframes SlideInFromRight {
-    0%  {
+    0% {
         opacity: 0.0;
         filter: alpha(opacity=0);
         -webkit-transform: translateX(9rem);
         -moz-transform: translateX(9rem);
         transform: translateX(9em);
     }
-    100%  {
+    100% {
         opacity: 1.0;
         filter: alpha(opacity=100);
         -webkit-transform-origin: top left;
