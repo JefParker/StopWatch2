@@ -4,7 +4,7 @@ function OnLoadWebsite() {
   var sHeader = "";
   sHeader += "<div class='Title' id='Title'>"+MakeLogo("Stop", "Watch", false, false, true)+"</div>";
   sHeader += "<div class='MenuButton' id='MenuButton'><a href='javascript:ShowMenuPanel()' title='Menu'>-<br>-<br>-</a></div>";
-  sHeader += "<div class='MenuPanel' id='MenuPanel'>"+MakeMenuPanel()+"</div>";
+  sHeader += "<div class='MenuPanel' id='MenuPanel'>" + MakeMenuPanel('Home') + "</div>";
 	document.getElementById("Header").innerHTML = sHeader;
 	document.getElementById("Main").innerHTML = "<div class='RoundedBox'><br>" + MakeLogo("Stop", "Watch", true, true, false) + "<br></div>";
 	document.getElementById("Title").addEventListener("click", MakeAboutUsPage);
@@ -22,6 +22,7 @@ function MakeAboutUsPage() {
 	sPage += "<br></div>";
   document.getElementById("Main").innerHTML = sPage;
   document.getElementById("HomeLogo").addEventListener("click", MakeStopWatchPage);
+  document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('About');
 }
 
 function MakeStopWatchPage() {
@@ -48,6 +49,7 @@ function MakeStopWatchPage() {
   StartClicked.ElapsedTime = 0;
   if (StartClicked.DisplayTimer)
     window.clearInterval(StartClicked.DisplayTimer);
+  document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('StopWatch');
 }
 
 function MakeTipCalcPage() {
@@ -89,6 +91,7 @@ function MakeTipCalcPage() {
   document.getElementById("Main").innerHTML = sPage;
 	document.getElementById('TipRound').checked = true;
 	document.getElementById("TipRound").addEventListener("change", UpdateTip);
+	document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('Tip');
 }
 
 function MakeFVCalcPage() {
@@ -108,6 +111,7 @@ function MakeFVCalcPage() {
   sPage += "<br></div>";
   document.getElementById("Main").innerHTML = sPage;
   UpdateFV();
+  document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('Future');
 }
 
 function MakeCPICalcPage() {
@@ -133,6 +137,7 @@ function MakeCPICalcPage() {
   document.getElementById("Main").innerHTML = sPage;
   document.getElementById("CPIStartYear").value='2015';
   document.getElementById("CPIEndYear").value='2015';
+  document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('CPI');
 }
 
 function MakeMagicNumberPage() {
@@ -153,15 +158,17 @@ function MakeMagicNumberPage() {
   document.getElementById("Main").innerHTML = sPage;
   document.getElementById("LostNum").addEventListener('change', CalculateMagicNumber, false);
   document.getElementById("DivWinNum").addEventListener('change', CalculateMagicNumber, false);
+  document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('Magic');
 }
 
-function MakeMenuPanel() {
-  var sMenu = "<a href='javascript:MakeStopWatchPage()' title='StopWatch'>StopWatch</a><br>";
-  sMenu += "<a href='javascript:MakeFVCalcPage()' title='Rate or Future Value'>Future</a><br>";
-  sMenu += "<a href='javascript:MakeCPICalcPage()' title='CPI Calculator'>CPI</a><br>";
-  sMenu += "<a href='javascript:MakeTipCalcPage()' title='Tip Calculator'>Tip</a><br>";
-  sMenu += "<a href='javascript:MakeMagicNumberPage()' title='Magic Number'>Magic #</a><br>";
-  sMenu += "<a href='javascript:MakeAboutUsPage()' title='About StopWatch'>About</a>";
+function MakeMenuPanel(sPage) {
+  var sMenu = '';
+  sMenu += ('StopWatch' === sPage) ? "<a href='javascript:CloseMenu()' title='StopWatch'>StopWatch</a><br>" : "<a href='javascript:MakeStopWatchPage()' title='StopWatch'>StopWatch</a><br>";
+  sMenu += ('Future' === sPage) ? "<a href='javascript:CloseMenu()' title='Rate or Future Value'>Future</a><br>" : "<a href='javascript:MakeFVCalcPage()' title='Rate or Future Value'>Future</a><br>";
+  sMenu += ('CPI' === sPage) ? "<a href='javascript:CloseMenu()' title='CPI Calculator'>CPI</a><br>" : "<a href='javascript:MakeCPICalcPage()' title='CPI Calculator'>CPI</a><br>";
+  sMenu += ('Tip' === sPage) ? "<a href='javascript:CloseMenu()' title='Tip Calculator'>Tip</a><br>" : "<a href='javascript:MakeTipCalcPage()' title='Tip Calculator'>Tip</a><br>";
+  sMenu += ('Magic' === sPage) ? "<a href='javascript:CloseMenu()' title='Magic Number'>Magic #</a><br>" : "<a href='javascript:MakeMagicNumberPage()' title='Magic Number'>Magic #</a><br>";
+  sMenu += ('About' === sPage) ? "<a href='javascript:CloseMenu()' title='About StopWatch'>About</a>" : "<a href='javascript:MakeAboutUsPage()' title='About StopWatch'>About</a>";
   return sMenu;
 }
 
