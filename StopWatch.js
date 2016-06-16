@@ -16,7 +16,7 @@ function MakeAboutUsPage() {
   document.getElementById("Title").innerHTML = "<div class='TitleAni'>" + MakeLogo("About", "SW", false, false, true) + "</div>";
   CloseMenu();
   var sPage = "<div class='RoundedBox'>";
-	sPage += "<p class='CopyCentered'><a href='https://chrome.google.com/webstore/detail/stopwatch/lifnoadagfppcljadelgkjddidcnjbcc' target='_blank'>StopWatch</a>, Version 0.0.1.0</p>";
+	sPage += "<p class='CopyCentered'><a href='https://chrome.google.com/webstore/detail/stopwatch/lifnoadagfppcljadelgkjddidcnjbcc' target='_blank'>StopWatch</a>, Version 0.0.1.1</p>";
 	sPage += "<div id='HomeLogo' class='Copy' style='font-size: 75%; text-align: center;'>"+MakeLogo("Stop", "Watch", true, true, false)+"</div>";
   sPage += "<div id='Copyright' class='Copy' style='font-size: 75%; text-align: center;'>&copy; " + YearInRomanNumerals() + " The Inchoate Company</div>";
 	sPage += "<br></div>";
@@ -165,7 +165,7 @@ function MakeBMIPage() {
   document.getElementById("Title").innerHTML = "<div class='TitleAni' title='Body Mass Index'>" + MakeLogo("BM", "Index", false, false, true) + "</div>";
   CloseMenu();
   var sPage = "<div class='RoundedBox'><div class='ControlsCentered'>";
-  sPage += "<span class='Copy'><a href='https://en.wikipedia.org/wiki/Body_mass_index' target='_blank' title='Wikipedia Body Mass Index Page'>Body mass index</a> is a rough attempt to quantify a person as underweight, normal weight, overweight.</span>";
+  sPage += "<span class='Copy'><a href='https://en.wikipedia.org/wiki/Body_mass_index' target='_blank' title='Wikipedia Body Mass Index Page'>Body mass index</a> is a rough attempt to quantify a person as underweight, normal weight, overweight or obese.</span>";
   sPage += "<br>";
   sPage += "<p class='Copy'>Height (feet & inches):</p>";
   sPage += "<select id='HeightFeet' class='Controls' OnChange='UpdateBMI()'>";
