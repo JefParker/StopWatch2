@@ -121,13 +121,13 @@ function MakeCPICalcPage() {
   sPage += "<p align='center'><input type='text' class='Controls' id='CPIStartingAmount' value='$100.00' maxlength='14' style='text-align: center; width: 80%;' data-inline='true' placeholder='Starting Amount' OnBlur='UpdateBP()' OnChange='UpdateBP()' OnInput='UpdateBP()' OnKeyUp='UpdateBP()' OnPaste='UpdateBP()'></p>";
   sPage += "<p class='Controls' style='text-align: center; margin-top: 0; font-size: 90%;'>in</p>";
   sPage += "<div class='ControlsCentered'><select id='CPIStartYear' class='Controls' OnChange='UpdateBP()'>";
-  for (var i=1913; i<2016; i++) {
+  for (var i=1913; i<2017; i++) {
     sPage += "<option value='"+i+"'>"+i+"</option>";
   }
   sPage += "</select></div>";
   sPage += "<p class='Controls' style='text-align: center; font-size: 90%;' id='CPITransLine'>has the same buying power in</p>";
   sPage += "<div class='ControlsCentered'><select id='CPIEndYear' class='Controls' OnChange='UpdateBP()'>";
-  for (i=1913; i<2016; i++) {
+  for (i=1913; i<2017; i++) {
     sPage += "<option value='"+i+"'>"+i+"</option>";
   }
   sPage += "</select></div>";
@@ -135,8 +135,8 @@ function MakeCPICalcPage() {
   sPage += "<p id='CPIResultAmount' class='Controls' style='text-align: center; margin-top: 0;'><b>$100.00</b></p>";
   sPage += "</div>";
   document.getElementById("Main").innerHTML = sPage;
-  document.getElementById("CPIStartYear").value='2015';
-  document.getElementById("CPIEndYear").value='2015';
+  document.getElementById("CPIStartYear").value='2016';
+  document.getElementById("CPIEndYear").value='2016';
   document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('CPI');
 }
 
@@ -161,6 +161,37 @@ function MakeMagicNumberPage() {
   document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('Magic');
 }
 
+function MakeBMIPage() {
+  document.getElementById("Title").innerHTML = "<div class='TitleAni' title='Body Mass Index'>" + MakeLogo("BM", "Index", false, false, true) + "</div>";
+  CloseMenu();
+  var sPage = "<div class='RoundedBox'><div class='ControlsCentered'>";
+  sPage += "<span class='Copy'><a href='https://en.wikipedia.org/wiki/Body_mass_index' target='_blank' title='Wikipedia Body Mass Index Page'>Body mass index</a> is a rough attempt to quantify a person as underweight, normal weight, overweight.</span>";
+  sPage += "<br>";
+  sPage += "<p class='Copy'>Height (feet & inches):</p>";
+  sPage += "<select id='HeightFeet' class='Controls' OnChange='UpdateBMI()'>";
+  for (var i=2; i<8; i++) {
+    sPage += "<option value="+i+">"+i+"</option>";
+  }
+  sPage += "</select>";
+  sPage += "<select id='HeightInches' class='Controls' OnChange='UpdateBMI()'>";
+  for (var k=0; k<12; k++) {
+    sPage += "<option value="+k+">"+k+"</option>";
+  }
+  sPage += "</select>";
+  sPage += "<div class='ControlsCentered'><p class='Copy'>Weight:  <input type='num' id='Weight' value='175' class='Controls' placeholder='175' style='width: 35px; text-align: center;' OnBlur='UpdateBMI()' OnChange='UpdateBMI()' OnInput='UpdateBMI()' OnKeyUp='UpdateBMI()' OnPaste='UpdateBMI()' /></p></div>";
+
+  sPage += "<div id='BMIResult'>?</div><br>";
+  sPage += "</div>"; // Close the rounded box div
+  document.getElementById("Main").innerHTML = sPage;
+  document.getElementById("HeightFeet").addEventListener('change', UpdateBMI, false);
+  document.getElementById("HeightInches").addEventListener('change', UpdateBMI, false);
+  document.getElementById("Weight").addEventListener('change', UpdateBMI, false);
+  document.getElementById("MenuPanel").innerHTML = MakeMenuPanel('BMI');
+  document.getElementById("HeightFeet").value = 5;
+  document.getElementById("HeightInches").value = 11;
+  UpdateBMI();
+}
+
 function MakeMenuPanel(sPage) {
   var sMenu = '';
   sMenu += ('StopWatch' === sPage) ? "<a href='javascript:CloseMenu()' title='StopWatch'>StopWatch</a><br>" : "<a href='javascript:MakeStopWatchPage()' title='StopWatch'>StopWatch</a><br>";
@@ -168,6 +199,7 @@ function MakeMenuPanel(sPage) {
   sMenu += ('CPI' === sPage) ? "<a href='javascript:CloseMenu()' title='CPI Calculator'>CPI</a><br>" : "<a href='javascript:MakeCPICalcPage()' title='CPI Calculator'>CPI</a><br>";
   sMenu += ('Tip' === sPage) ? "<a href='javascript:CloseMenu()' title='Tip Calculator'>Tip</a><br>" : "<a href='javascript:MakeTipCalcPage()' title='Tip Calculator'>Tip</a><br>";
   sMenu += ('Magic' === sPage) ? "<a href='javascript:CloseMenu()' title='Magic Number'>Magic #</a><br>" : "<a href='javascript:MakeMagicNumberPage()' title='Magic Number'>Magic #</a><br>";
+  sMenu += ('BMI' === sPage) ? "<a href='javascript:CloseMenu()' title='BMI'>BMI</a><br>" : "<a href='javascript:MakeBMIPage()' title='Body Mass Index'>BMI</a><br>";
   sMenu += ('About' === sPage) ? "<a href='javascript:CloseMenu()' title='About StopWatch'>About</a>" : "<a href='javascript:MakeAboutUsPage()' title='About StopWatch'>About</a>";
   return sMenu;
 }
@@ -308,7 +340,7 @@ function MS2HMST(nMS) {
 function UpdateBP() {
   var nDifference = 0;
   var sStartingValue = 0;
-  var nThisYear = '2015';
+  var nThisYear = '2016';
   var aCPIYears = new Array("1.010101010", "1.010000000", // 1913
   "1.079207921", "1.174311927", "1.179687500", "1.145695364", "1.156069364", // 1915
   "0.895000000", "0.938547486", "1.017857143", "1.000000000", "1.023391813", // 1920
@@ -329,14 +361,15 @@ function UpdateBP() {
   "1.029527559", "1.022944551", "1.015576324", "1.022085890", "1.033613445",
   "1.028455285", "1.015810277", "1.022790439", "1.026630435", "1.033880360",
   "1.032258065", "1.028482143", "1.038395501", "0.996442223", "1.016402765", // 2005
-  "1.031565286", "1.020694499", "1.014647595", "1.016221878", "0.999421296" // 2010
+  "1.031565286", "1.020694499", "1.014647595", "1.016221878", "1.001186976", // 2010
+  "1.013581304"
   );
 
   var nYearOffset = nThisYear - aCPIYears.length;
   document.getElementById('CPIStartingAmount').value = document.getElementById('CPIStartingAmount').value.replace("$", "");
   if (document.getElementById('CPIStartYear').value == document.getElementById('CPIEndYear').value) {
     var sSameValue = document.getElementById('CPIStartingAmount').value;
-    document.getElementById('CPIResultAmount').innerHTML = '$' + sSameValue;
+    document.getElementById('CPIResultAmount').innerHTML = '<b>$' + numberWithCommas(sSameValue) + "</b>";
   }
   else if (document.getElementById('CPIStartYear').value > document.getElementById('CPIEndYear').value) {
     nDifference = document.getElementById('CPIStartYear').value - document.getElementById('CPIEndYear').value;
@@ -344,7 +377,7 @@ function UpdateBP() {
     var sEndYear = document.getElementById('CPIEndYear').value - nYearOffset;
     for (x=sEndYear; x<nDifference + sEndYear; x++)
       sStartingValue /= aCPIYears[x];
-    document.getElementById('CPIResultAmount').innerHTML = '$' + roundNumber(sStartingValue, 2).toFixed(2);
+    document.getElementById('CPIResultAmount').innerHTML = '<b>$' + numberWithCommas(roundNumber(sStartingValue, 2).toFixed(2)) + "</b>";
   }
   else if (document.getElementById('CPIStartYear').value < document.getElementById('CPIEndYear').value) {
     nDifference = document.getElementById('CPIEndYear').value - document.getElementById('CPIStartYear').value;
@@ -352,7 +385,8 @@ function UpdateBP() {
     var sStartingYear = document.getElementById('CPIStartYear').value - nYearOffset;
     for (x=sStartingYear; x<nDifference + sStartingYear; x++)
       sStartingValue *= aCPIYears[x];
-    document.getElementById('CPIResultAmount').innerHTML = '$' + roundNumber(sStartingValue, 2).toFixed(2);
+    var nResult = roundNumber(sStartingValue, 2).toFixed(2);
+    document.getElementById('CPIResultAmount').innerHTML = '<b>$' + numberWithCommas(nResult) + "</b>";
   }
   if (document.getElementById('CPIEndYear').value == nThisYear)
     document.getElementById('CPITransLine').innerHTML = 'has the same buying power in';
@@ -360,6 +394,10 @@ function UpdateBP() {
     document.getElementById('CPITransLine').innerHTML = 'had the same buying power in';
 
   document.getElementById('CPIStartingAmount').value = "$" + document.getElementById('CPIStartingAmount').value;
+}
+
+function numberWithCommas(x) {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 // End of CPI Functions
 
@@ -513,3 +551,42 @@ function CalculateMagicNumber() {
     document.getElementById('MagicNum').innerHTML = "<div class='MagicNumber'>" + ((nLeagueGames + 1) - (nLoss + nDivWinNum)) + "</div>";
 }
 // End of MLB Magic Number functions
+
+// Start of BMI functions
+function cal_bmi(lbs, ins) {
+  h2 = ins * ins;
+  bmi = lbs/h2 * 703;
+  f_bmi = Math.floor(bmi);
+  diff  = bmi - f_bmi;
+  diff = diff * 10;
+  diff = Math.round(diff);
+
+  if (diff == 10) {   // Need to bump up the whole thing instead
+    f_bmi += 1;
+    diff   = 0;
+  }
+  bmi = f_bmi + "." + diff;
+  return bmi;
+}
+
+function UpdateBMI() {
+  var nFeet, nInches, nTotalInches, nLbs, nBMI = 0;
+  nLbs = Number(document.getElementById('Weight').value);
+  if (isNaN(nLbs)) {
+    document.getElementById('BMIResult').innerHTML = "<div class='MagicNumber' style='color: #424242;'>?<br><span style='font-size: 50%;'>(weight is not a number)</span></div>";
+    return;
+  }
+  nFeet = Number(document.getElementById('HeightFeet').value);
+  nInches = Number(document.getElementById('HeightInches').value);
+  nTotalInches = (nFeet * 12) + nInches;
+  nBMI = cal_bmi(nLbs, nTotalInches);
+  if (nBMI < 18.5) // Underweight
+    document.getElementById('BMIResult').innerHTML = "<div class='MagicNumber' style='color: blue;'>BMI:  " + nBMI + "<br><span style='font-size: 50%;'>(underweight)</span></div>";
+  else if (nBMI > 29.9) // Obese
+    document.getElementById('BMIResult').innerHTML = "<div class='MagicNumber' style='color: darkred;'>BMI:  " + nBMI + "<br><span style='font-size: 50%;'>(obese)</span></div>";
+  else if (nBMI > 24.9) // Overweight
+    document.getElementById('BMIResult').innerHTML = "<div class='MagicNumber' style='color: red;'>BMI:  " + nBMI + "<br><span style='font-size: 50%;'>(overweight)</span></div>";
+  else // Normal Weight
+    document.getElementById('BMIResult').innerHTML = "<div class='MagicNumber' style='color: green;'>BMI:  " + nBMI + "<br><span style='font-size: 50%;'>(normal weight)</span></div>";
+}
+// End of BMI functions
